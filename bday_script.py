@@ -11,7 +11,7 @@ print('Its starting...')
 
 # setting the variables
 url = 'https://www.facebook.com/'
-my_user = 'usr'
+my_user = 'imey25@hotmail.com'
 my_pass = 'pass'
 
 # starting the selenium driver
@@ -32,11 +32,21 @@ password.send_keys(my_pass)
 submit.click()
 time.sleep(3)
 
-# getting search bar and searching for key
-search = driver.find_element_by_name('q')
-search.send_keys('something')
-search_button = driver.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[1]/div/div/div/div[1]/div[2]/div/form/button')
-search_button.click()
+print('Logged In...')
+
+
+# Open Birthdays 
+bday_button = driver.find_element_by_xpath('/html/body/div[1]/div[3]/div[1]/div/div[2]/div[2]/div[1]/div[1]/div/div[2]/div/div/div[1]/div[1]/div[1]/div/div/div/div/a')
+bday_button.click()
+print('Opened Birthdays')
+time.sleep(4)
+
+#send Birthday message:
+msg = 'happy birthday'
+bday_text = driver.find_element_by_class_name('a._8o _8s lfloat _ohe')
+person = bday_text.get_attribute('title')
+print('hereeeee',person)
+
 
 
 # while True:
