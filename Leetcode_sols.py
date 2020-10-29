@@ -235,3 +235,46 @@ class Solution:
         return dum_start.next
 #-----------------------------------------====------------------------------------------
 
+# 20. Valid Parentheses
+
+
+class Solution:
+    def isValid(self, s: str) -> bool:
+        if len(s) % 2 != 0:
+            return False
+        opener = ["(", "{", "["]
+        stack = []
+        for c in s:
+            # encountered an opener bracket, put in on the stack
+            if c in opener:
+                stack.append(c)
+            if len(stack) == 0:
+                return False
+            if c == ")":
+                val = stack[-1]
+                if val == "(":
+                    stack.pop()
+                else:
+                    return False
+            if c == "}":
+                val = stack[-1]
+                if val == "{":
+                    stack.pop()
+                else:
+                    return False
+            if c == "]":
+                val = stack[-1]
+                if val == "[":
+                    stack.pop()
+                else:
+                    return False
+            
+        if len(stack) != 0:
+            return False
+        else:
+            return True
+#-----------------------------------------====------------------------------------------
+
+
+#-----------------------------------------====------------------------------------------
+        
