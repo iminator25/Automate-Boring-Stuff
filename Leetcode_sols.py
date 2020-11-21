@@ -376,7 +376,86 @@ class SparseVector:
 # ans = v1.dotProduct(v2)
 
 #-----------------------------------------====------------------------------------------
+# 807. Max Increase to Keep City Skyline
 
+# not a very efficent solution but i understand the process for solving it 
+# fully now
+
+
+class Solution:
+    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
+        
+#         max_col = [max(col) for col in list(zip(*grid))]
+        
+#         print('*grid = ',*grid)
+        
+#         print('zip(*grid) = ', list(zip(*grid)))
+        
+#         print(max_col)
+        
+        
+            
+        # checking from top and bottom
+        row_len = len(grid[0])
+        
+        _map = {}
+        index = 0
+        print("row len = ", row_len)
+        for i in grid: 
+            for j in i: 
+                
+                _map[index] = 0
+                index+=1
+        
+        index = 0
+        for i in grid:
+            for j in i:
+                if j > _map[index]:
+                    _map[index] = j
+                index+=1
+                
+        top_bot_max = [0]*row_len
+        for key, value in _map.items():
+            # getting column number
+            column = key % row_len
+            if value > top_bot_max[column]:
+                top_bot_max[column]= value
+            
+            
+        print(top_bot_max)
+            
+        
+        # print(_map)
+        
+        
+        # checking from right and left
+        right_max = []
+        for i in grid:
+            right_left = max(i)
+            right_max.append(right_left)
+        
+        print(right_max)
+        
+        # now to do the actual problem 
+        total = 0
+        
+        right_ind = 0
+        for row in grid:
+            top_ind = 0
+            
+            for item in row:
+                top_consid = top_bot_max[top_ind]
+                right_consid = right_max[right_ind]
+                choose = min(top_consid,right_consid)
+                to_add = choose - item 
+                if item < choose:
+                    item = choose
+                total += to_add
+                top_ind += 1
+            right_ind += 1
+        return total 
+        
+        
 
 
 
